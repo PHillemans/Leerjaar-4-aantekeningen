@@ -101,7 +101,7 @@ orgniseren persoonlijk leiderschap
 ### Waarom
 
 - Goed afspraken maken van te voren zorgt voor het voorkomen van problemen
-- Pascal > eigenlijk wil je klaar zijn om te beginnen met je sprint, alles om de prestatie optimaal te maken
+- Pascal _eigenlijk wil je klaar zijn om te beginnen met je sprint, alles om de prestatie optimaal te maken_
 - asignment op learn voor **contract** om ervoor te zorgen dat we het altijd bij de hand kunnen hebben
 
 ### The essentials
