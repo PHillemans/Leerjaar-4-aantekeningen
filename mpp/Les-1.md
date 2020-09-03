@@ -17,6 +17,8 @@
 ### opdrachtje
 
     - Kijk welke varabel welk memory type bij welke variabele hoort?
+
+    #### Code
     ```c
     #include <stdio.h>
 
@@ -33,6 +35,8 @@
         return 0;
     }
     ```
+    #### Uitleg
+
         - Stack: waar tijdelijke data staat (aanroepen van functie bijvoorbeeld)
         - Heap: voor dynamisch data (Bijvoorbeeld nieuwe klasse)
         - Data: voor static en global vars
