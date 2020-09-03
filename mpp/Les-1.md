@@ -16,31 +16,29 @@
 
 ### opdrachtje
 
-    - Kijk welke varabel welk memory type bij welke variabele hoort?
+Kijk welke varabel welk memory type bij welke variabele hoort?
 
-    #### Code
-    ```c
-    #include <stdio.h>
+```c
+#include <stdio.h>
 
-    int A = 8; //DATA omdat dit een global waarde is
+int A = 8; //DATA omdat dit een global waarde is
 
-    int main() {
-        int i = 10; //STACK Omdat het alleen aanwezig is tijdens de functie
-        
-        int sum = i+A; //STACK Zelfde reden als hiervoor
+int main() {
+    int i = 10; //STACK Omdat het alleen aanwezig is tijdens de functie
+    
+    int sum = i+A; //STACK Zelfde reden als hiervoor
 
-        printf("%d\n", sum);
+    printf("%d\n", sum);
 
-        //program executed correctly
-        return 0;
-    }
-    ```
-    #### Uitleg
+    //program executed correctly
+    return 0;
+}
+```
 
-        - Stack: waar tijdelijke data staat (aanroepen van functie bijvoorbeeld)
-        - Heap: voor dynamisch data (Bijvoorbeeld nieuwe klasse)
-        - Data: voor static en global vars
-        - Code: Hier komt je programma in die gerunt wordt
+- Stack: waar tijdelijke data staat (aanroepen van functie bijvoorbeeld)
+- Heap: voor dynamisch data (Bijvoorbeeld nieuwe klasse)
+- Data: voor static en global vars
+- Code: Hier komt je programma in die gerunt wordt
 
 
 ## Tijdcomplexiteit
