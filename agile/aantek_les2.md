@@ -1,4 +1,4 @@
-#Agile, the way forward
+# Agile, the way forward
 
 - Verras je team niet met nieuwe dingen tijdens een retro behandel deze eerder ook al.
 
