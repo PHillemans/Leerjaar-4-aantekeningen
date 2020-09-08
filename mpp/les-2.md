@@ -137,6 +137,7 @@ void mystrcat(char * dest, char * src) {
 ```
 
 ## Huiswerk
+
 - schrijf een versie van mystrcat die een maximale tijdcomplexiteit van 0(n) heeft
 - Kan handig zijn om te oefenen met pointers:
     - [Pointers](learn-c.org/Pointers)
