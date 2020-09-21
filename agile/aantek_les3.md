@@ -1,34 +1,56 @@
-# Les 3
+# Agile les 3
 
-- De opdracht begrijpen
-- nulmeting al begonnen zijn
-    - Voor elke kwadrant ga je een nulmeting doen
-    - gebruiken van de feedback formulieren die gebruikt gaat worden voor afstuderen te vinden op learn onder: CPS -> onderaan zie je: HBO-ICTCPS toets 1
-- Bouwplan maken voor portfolio
-    - Begin blok 13 beoordeel je jezelf
-    - eind blok 13 of begin blok 14 laat je je teamgenoten je beoordelen
-        - Je nodigd de mensen uit per kwadrant die daar het beste op kan beoordelen
-    - eind blok 14: Aan de hand van deze dingen stel je actiepunten op voor je stage in conclusie
-- Planning maken
-- Voorbeelden schrijven an de hand van starrt methode
-- Rapportage technieken en tips
 
-## Planning maken
+## Competenties = kennis + vaardigheden + professioneel gedrag/houding
 
-- regelmatig terugblikken
-- Plan goed in wanneer je begint aan een planning 
+- ICT competenties bepaalde route in opleiding
+- Generieke competenties: zelfde voor alle opleidingen
+- Afstuderen vraagd naar beide: anders dan nu (nu met team, dan individueel)
 
-## Start methode voor voorbeelden
-- situatie
-- Taak
-- Actie
-- Resultaat
-- Reflectie
-- Transfer (conclusie)
 
-Je hoeft dit niet perfect te doen, het gaat erom dat je weet waar je staat (bewust zijn van wat je kan, wat je wilt leren en waar je wat aan gaat doen)
+## course: Complex Project Specialization
 
-## Rapportage technieken
- - bladzijden zijn geniummerd
- - Hoofdstuk begin met nieuwe pagina. SUb hoofstukken onder elkaar gepl,aatst en niet op nieuwe pagina, tabellen en figuren zijn geidentificeerd
- minimaal 1 verwijzing naar blijlage
+- Werken in projectteams aan een (trackgerichte) ict opdracht.
+- Samenwerken vanuit `agile` princiepes om te komen tot een oplossing
+
+
+## kwadranten
+
+Doelgericht interactieren, onderzoekend probleem oplossend. Toekomstgericht organiseren, Persoonlijk leiderschap.
+
+
+## vragen
+
+### Persoonlijk leiderschap:
+Wat houdt "Wat voor type ict professioneel" in:
+- Betekend wat jij later zou willen zijn en in wat voor omgeving(bedrijf)
+
+Ondernemend zijn:
+- Proactief, niet afwachtend en bijvoorbeeld kennis opdoen voordat je die zou moeten gebruiken
+
+### Doelgericht interacteren:
+Hoe inportfolio dit laten zien (bijvoorbeeld communicatie?
+- Voorbeeld: Hoe interviewen in design thinking?
+    - Neiging tot niet persoonlijk genoeg roept geen reacties op.
+    - Dus goed nadenken over hoe je de juiste mensen bereikt
+    - Bellen is dus veel effectiever bijvoorbeeld
+
+### Toekomstgericht organiseren:
+Ethische afwegingen:
+Misschien vooral belangrijk bij data, of bij iets gerelateerd met militaire training (als voorbeeld).
+
+In afstuderen zal je dingen tegenkomen en deze noteren, maar je zal ook specifiek naar dingen opzoeken om als materiaal te gebruiken in je portfolio
+
+
+## portfolio globaal
+
+- Houd focus op het doel van het portfolio
+- Competenties bestaan uit kennis + vaardigheden + gedrag/houding
+- Maak bouwplan
+- Maak nulmeting en formulier
+- etc.
+
+- beoordeling 1 presentatie over persoonlijk leiderschap
+- assessmentgesprek met twee doucemten over 3 overige kwadranten
+- Beoordelingsform op learn
+- portfolio geld als ingangseis. Geen portfolio is geen beoordeling
