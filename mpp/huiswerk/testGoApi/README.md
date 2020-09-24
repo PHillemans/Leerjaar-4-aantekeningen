@@ -34,3 +34,7 @@ Tijdens de start van de server zal de server een bestand proberen te importeren 
 localhost:8080/movies
 ```
 
+- De url die gebruikt moet worden om een enkele entry op te halen is:
+```
+localhost:8080/movies/{id}
+```
