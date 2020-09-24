@@ -15,14 +15,18 @@ Tijdens de start van de server zal de server een bestand proberen te importeren 
 ### Post
 
 - Het posten van een film kan gedaan worden door het sturen van een postrequest met in body in de vorm van:
-```JSON
-{
-    "IMDBid": "[ID| string]",
-    "Name": "[name| string]",
-    "Year": [Year| int],
-    "Score": [score| float]
-}
-```
+    ```JSON
+    {
+        "IMDBid": "[ID| string]",
+        "Name": "[name| string]",
+        "Year": [Year| int],
+        "Score": [score| float]
+    }
+    ```
+
+- Deze body moet verstuurd worden als "Content-Type: application/json"
+
+
 
 ### Get
 
