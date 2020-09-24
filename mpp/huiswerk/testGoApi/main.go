@@ -2,26 +2,28 @@ package main
 
 import (
 	"database/sql"
+	"encoding/csv"
 	"encoding/json"
 	"errors"
-    _ "github.com/mattn/go-sqlite3"
 	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+	"strconv"
+	"strings"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type movie struct {
-    IMDBId int          `json:"IMDBId"`
+    IMDBId string       `json:"IMDBId"`
     Name string         `json:"Name"`
     Year int            `json:"Year"`
     Score float64       `json:"Score"`
 }
 
-type allMovies []movie
-
 func movieHandler(w http.ResponseWriter, req *http.Request) {
-
     switch req.Method {
         case "POST":
             postMovie("movie", req.Body, w)
@@ -47,7 +49,7 @@ func getMovies(request string, w http.ResponseWriter) {
     for results.Next() {
         var (
             id int
-            imdbid int
+            imdbid string
             name string
             year int
             score float64
@@ -79,12 +81,13 @@ func postMovie(request string, body io.ReadCloser, w http.ResponseWriter) {
     var newMovie movie
     err = json.Unmarshal(b, &newMovie)
     if err != nil {
-        log.Fatalln(err)
+        w.Write([]byte("There maybe something wrong with the types the provided json.\n"))
+        return
     }
 
     err = addMovie(newMovie)
     if err != nil {
-        http.Error(w, err.Error(), 400)
+        log.Println(err)
     }
 
     json.NewEncoder(w).Encode(newMovie)
@@ -95,8 +98,8 @@ func movieGetHandler(w http.ResponseWriter, req *http.Request) {
         return
     }
 
-    //@TODO get imdbId from parameters in request query
-    var imdbId int
+    var imdbId string
+    imdbId = strings.Split(req.RequestURI, "movies/")[1]
 
     db := getDatabase()
     defer db.Close()
@@ -107,21 +110,57 @@ func movieGetHandler(w http.ResponseWriter, req *http.Request) {
     result := prep.QueryRow(imdbId)
     var (
         id int
-        imdbid int
+        imdbid string
         movieName string
         year int
         score float64
     )
-    result.Scan(&id, imdbid, &movieName, &year, &score)
+    result.Scan(&id, &imdbid, &movieName, &year, &score)
     dbMovie := movie{
-        id, movieName, year, score,
+        imdbid, movieName, year, score,
     }
 
     json.NewEncoder(w).Encode(dbMovie)
 }
 
+func importData() {
+    db := getDatabase()
+    defer db.Close()
+
+    csvFile, err := os.Open("watchlist.csv")
+    if err != nil {
+        log.Println(err)
+        return
+    }
+
+    r := csv.NewReader(csvFile)
+
+    for {
+        record, err := r.Read()
+        if err == io.EOF {
+            break
+        }
+
+        imdbId := record[1]
+        name := record[5]
+        year,_ := strconv.ParseFloat(record[10], 64)
+        score,_ := strconv.Atoi(record[8])
+
+        newMovie := movie{
+            imdbId,
+            name,
+            score,
+            year,
+        }
+        insertMovieInToDatabase(newMovie)
+    }
+
+}
+
 func main() {
     createTable()
+    go importData()
+
     http.HandleFunc("/movies", movieHandler)
     http.HandleFunc("/movies/", movieGetHandler)
     http.ListenAndServe(":8080", nil)
@@ -130,7 +169,7 @@ func main() {
 func addMovie(newMovie movie) (error) {
     var faultMessage string
     switch 0 {
-    case newMovie.IMDBId:
+    case len(newMovie.IMDBId):
         faultMessage = faultMessage + "Missing IMDBid; "
         fallthrough
     case len(newMovie.Name):
@@ -160,7 +199,8 @@ func insertMovieInToDatabase(newMovie movie) {
     query := "INSERT INTO MOVIES (imdbid, name, year, score) VALUES (?, ?, ?, ?)"
     prep, err := db.Prepare(query)
     if err != nil {
-        log.Fatal(err.Error())
+        log.Println(err.Error())
+        return
     }
 
     prep.Exec(newMovie.IMDBId, newMovie.Name, newMovie.Year, newMovie.Score)
@@ -182,7 +222,7 @@ func createTable() {
         Create TABLE IF NOT EXISTS movies
             (
                 id INTEGER PRIMARY KEY,
-                imdbid int,
+                imdbid TEXT,
                 name TEXT,
                 year int,
                 score float
