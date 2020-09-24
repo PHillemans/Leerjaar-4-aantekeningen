@@ -64,6 +64,11 @@ func getMovies(request string, w http.ResponseWriter) {
         dbMovies = append(dbMovies, dbMovie)
     }
 
+    if dbMovies == nil {
+        w.Write([]byte("There are no movies yet"))
+        return
+    }
+
     w.WriteHeader(http.StatusOK)
     json.NewEncoder(w).Encode(dbMovies)
 }
@@ -116,6 +121,10 @@ func movieGetHandler(w http.ResponseWriter, req *http.Request) {
         score float64
     )
     result.Scan(&id, &imdbid, &movieName, &year, &score)
+    if imdbid == "" {
+        w.Write([]byte("No item has been found with the id: "+ imdbId))
+        return
+    }
     dbMovie := movie{
         imdbid, movieName, year, score,
     }

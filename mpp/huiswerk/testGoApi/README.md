@@ -5,8 +5,9 @@
 Voor het starten van de server, moet er eerst een commando gedraaid worden om een library te importeren voor het gebruik van sqlite
 - Doe dit door `go get github.com/mattn/go-sqlite3` te draaien in de terminal in de root van dit project
 
-Wanneer alles is geinstalleerd kan het go bestand gerunt of gecompiled worden:
+Wanneer alles is geinstalleerd kan het go bestand gerunt of gecompileerd worden:
 - Draai `go run main.go` of `go build main.go`
+- Als de build gedraaid is kan deze worden uitgevoerd met `./main` vanaf de locatie waar het build commando is gedraaid
 
 ### On start
 
@@ -28,6 +29,8 @@ Tijdens de start van de server zal de server een bestand proberen te importeren 
 
 
 ### Get
+
+Voordat er een get request wordt uitgevoerd moet er iets in de database staan. Mocht dit niet het geval zijn wordt er niets returned.
 
 - Het verkrijgen van allen films die ingeladen zijn zullen worden gedaan met een get request. Deze zal naar de volgende url gestuurd moeten worden:
 ```
