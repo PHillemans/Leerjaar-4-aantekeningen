@@ -27,8 +27,10 @@ Tijdens de start van de server zal de server een bestand proberen te importeren 
 - Deze body moet verstuurd worden als "Content-Type: application/json"
 
 
-
 ### Get
 
-- Het verkrijgen van allen films die ingeladen zijn 
+- Het verkrijgen van allen films die ingeladen zijn zullen worden gedaan met een get request. Deze zal naar de volgende url gestuurd moeten worden:
+```
+localhost:8080/movies
+```
 
