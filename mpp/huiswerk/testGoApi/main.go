@@ -85,12 +85,11 @@ func movieDescriptionHandler(w http.ResponseWriter, req *http.Request) {
         w.Write(b)
     } else {
         db := getDatabase()
-        defer db.Close()
         query := "SELECT id, imdbid FROM movies"
         prep, err := db.Prepare(query)
         if err != nil {log.Fatalln("openin")}
         results,_ := prep.Query()
-        log.Println(prep)
+        db.Close()
         for results.Next() {
             var (
                 id int
@@ -99,12 +98,24 @@ func movieDescriptionHandler(w http.ResponseWriter, req *http.Request) {
             results.Scan(&id, &imdbid)
             go importMovieDesc(requestURL, imdbid)
         }
+        w.Write([]byte("Descriptions has been added"))
     }
 }
 
 func getMovies(request string, w http.ResponseWriter) {
+    dbMovies := getMoviesFromDB()
+
+    if dbMovies == nil {
+        w.Write([]byte("There are no movies yet"))
+        return
+    }
+
+    w.WriteHeader(http.StatusOK)
+    json.NewEncoder(w).Encode(dbMovies)
+}
+
+func getMoviesFromDB() ([]movie){
     db := getDatabase()
-    defer db.Close()
     query := "SELECT * FROM movies"
     prep, err := db.Prepare(query)
     if err != nil {
@@ -132,14 +143,7 @@ func getMovies(request string, w http.ResponseWriter) {
         }
         dbMovies = append(dbMovies, dbMovie)
     }
-
-    if dbMovies == nil {
-        w.Write([]byte("There are no movies yet"))
-        return
-    }
-
-    w.WriteHeader(http.StatusOK)
-    json.NewEncoder(w).Encode(dbMovies)
+    return dbMovies
 }
 
 func postMovie(request string, body io.ReadCloser, w http.ResponseWriter) {
@@ -205,16 +209,25 @@ func movieGetHandler(w http.ResponseWriter, req *http.Request) {
 func importMovieDesc(req string , imdbid string) {
     log.Println("getting results for imdbid: ", imdbid)
 
+    // get request for description
     resp, err := http.Get(req + imdbid)
     if err != nil {log.Println("error in req to omdb")}
 
+    // read body
     b,_ := ioutil.ReadAll(resp.Body)
     defer resp.Body.Close()
 
+    // translate to omdbMovie struct
     var res omdbMovie
     json.Unmarshal([]byte(b), &res)
 
-    // TODO throw in database if found
+    // get the database and exec the query
+    db := getDatabase()
+    query := "UPDATE movies SET desc = ? WHERE imdbid is ?;"
+
+    prep,_ := db.Prepare(query)
+    prep.Exec(res.Plot, imdbid)
+    db.Close()
     log.Println("Got desc for: " + imdbid + ", which is: " + res.Plot)
 }
 
@@ -229,6 +242,9 @@ func importData() {
     }
 
     r := csv.NewReader(csvFile)
+    if _, err := r.Read(); err != nil {
+        log.Println("ERRRROR terror")
+    }
 
     for {
         record, err := r.Read()
