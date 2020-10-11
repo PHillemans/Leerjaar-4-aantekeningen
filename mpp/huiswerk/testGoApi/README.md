@@ -49,5 +49,5 @@ Deze worden automatisch ingeladen mits het bestand te vinden is in de DIR waar h
 
 **Er** zijn twee manieren van het toevoegen van descriptions aan de films, 
 1. Dit kan je doen door een get request te doen naar localhost:8080/descriptions/{ID}
-2. Of je haalt ze allemaal op door een GET request te doen naar localhost:8080/descriptions
-    Bij deze tweede optie zorg je ervoor dat alle films concurrent worden toegevoegd. Dit zie je voorbij komen in je terminal
+2. Of je haalt ze allemaal op door een GET request te doen naar localhost:8080/descriptions.
+Bij deze tweede optie zorg je ervoor dat alle films concurrent worden toegevoegd. Dit zie je voorbij komen in je terminal
